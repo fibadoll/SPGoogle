@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C3006" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="CarData" representedClassName="CarData" syncable="YES">
+        <attribute name="car_id" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="license" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="status" optional="YES" attributeType="Boolean" syncable="YES"/>
+    </entity>
+    <entity name="PaymentData" representedClassName="PaymentData" syncable="YES">
+        <attribute name="address_1" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address_2" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="card_number" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="cvv" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="expire_month" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="expire_year" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="first_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="last_name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="state" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="zip_code" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="UserData" representedClassName="UserData" syncable="YES">
+        <attribute name="default_car" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="user_id" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <relationship name="own_cars" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="CarData" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="CarData" positionX="72" positionY="-27" width="128" height="90"/>
+        <element name="PaymentData" positionX="79" positionY="171" width="128" height="240"/>
+        <element name="UserData" positionX="-119" positionY="54" width="128" height="90"/>
+    </elements>
+</model>
