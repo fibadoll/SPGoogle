@@ -127,7 +127,6 @@
     NSMutableData *xmlData = [[NSMutableData alloc] init];
     [xmlData setData:data];
     NSString *xmlCheck = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
-    //NSLog(@"xmlCheck = %@", xmlCheck);
     
     SBJsonParser* parser = [[SBJsonParser alloc] init];
     // assuming jsonString is your JSON string...
@@ -143,18 +142,6 @@
         NSDictionary *myarr = [parser objectWithString:xmlCheck];
         return myarr;
     }
-    
-//    parkingId = [myarr objectForKey:@"id"];
-//    
-//    NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-//    [dateFormatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-//    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithName:@"GMT"]];
-//    parkingTime = [dateFormatter dateFromString:[myarr objectForKey:@"starttime"]];
-//    NSLog(@"park at: %@", [myarr objectForKey:@"starttime"]);
-//    NSLog(@"parking Time: %@", parkingTime);
-//    NSLog(@"%@", myarr);
-
-    
     
 }
 - (void)viewDidUnload {

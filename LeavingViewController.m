@@ -17,6 +17,7 @@
 
 @implementation LeavingViewController
 
+@synthesize parkedTime;
 @synthesize parkingId;
 @synthesize carId;
 @synthesize spotId;
@@ -164,28 +165,22 @@ didReceiveResponse:(NSURLResponse*)response {
     [super viewWillDisappear:animated];
     [timer invalidate];
     timer = nil;
-    NSLog(@"hello");
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([[segue identifier] isEqualToString:@"MyPark"]) {
-        NSLog(@"my Park");
         MapViewController *viewController = segue.destinationViewController;
         [viewController setMyParkLocation:myParkLocation];
     } else if ([[segue identifier] isEqualToString:@"Leave"]) {
-        NSLog(@"Leave");
         ReceiptViewController *viewController = segue.destinationViewController;
-
         [viewController setSpotId:spotId];
-       // NSLog(@"spot number:%@", [viewController spotId]);
         NSDate *now = [NSDate date];
         NSTimeInterval time = [now timeIntervalSinceDate:self.parkedTime];
         [viewController setTotalTime:[NSNumber numberWithDouble:time]];
         int parkUnit = (int) time/ timeUnit + 1;
         double price = (double) parkUnit * priceRate / 100;
         [viewController setTotalFee:[NSNumber numberWithDouble:price]];
-        NSLog(@"done");
     }
 }
 

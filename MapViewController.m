@@ -65,7 +65,6 @@
     didUpdateToLocation:(CLLocation *)newLocation
            fromLocation:(CLLocation *)oldLocation
 {
-    //NSLog(@"%@", newLocation);
     // How many seconds ago was this new location created?
     NSTimeInterval t = [[newLocation timestamp] timeIntervalSinceNow];
     // CLLocationManagers will return the last found location of the
@@ -85,7 +84,6 @@
 
 - (void)searchLocation:(NSString*)name
 {
-    //NSLog(@"%@", name);
     //Build the string to Query Google Maps.
 
     NSMutableString *urlString =
@@ -126,12 +124,10 @@ didReceiveResponse:(NSURLResponse*)response {
         NSString *jsonString = [[NSString alloc] initWithData:xmlData
                                                      encoding:NSUTF8StringEncoding];
         
-        NSLog(@"json:%@", jsonString);
         //JSON Framework magic to obtain a dictionary from the jsonString.
         SBJsonParser *parser = [[SBJsonParser alloc] init];
         NSDictionary *results = [parser objectWithString:jsonString];
         
-        //NSLog(@"results: %@", results);
         //Now we need to obtain our coordinates
         NSArray *placemark  = [results objectForKey:@"Placemark"];
         NSArray *coordinates = [[placemark objectAtIndex:0] valueForKeyPath:@"Point.coordinates"];
@@ -176,26 +172,21 @@ didReceiveResponse:(NSURLResponse*)response {
         [self zoomMapAndCenterByCoordinate:coordinate];
         [xmlData setData:nil];
     } else if (connection == viewStatusConnection) {
-        NSLog(@"%@", xmlData);
         //The string received from google's servers
         NSString *jsonString = [[NSString alloc] initWithData:xmlData
                                                      encoding:NSUTF8StringEncoding];
         
         
         jsonString = [jsonString stringByReplacingOccurrencesOfString:@"[]" withString:@""];
-        NSLog(@"%@", jsonString);
         //JSON Framework magic to obtain a dictionary from the jsonString.
         SBJsonParser *parser = [[SBJsonParser alloc] init];
         NSArray *results = [parser objectWithString:jsonString];
-        NSLog(@"results: %@", results);
         [activityIndicator stopAnimating];
         [xmlData setData:nil];
         
         for (int i = 0; i < [results count]; i++) {
             
             NSDictionary *tmp = [results objectAtIndex:i];
-            
-            NSLog(@"%@ at %d", tmp, i);
             NSNumber *latitude = [tmp objectForKey:@"latitude"];
             NSNumber *longitude = [tmp objectForKey:@"longitude"];
             NSNumber *status = [tmp objectForKey:@"status"];

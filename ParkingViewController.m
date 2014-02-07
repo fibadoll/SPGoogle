@@ -295,7 +295,6 @@ didFinishPickingMediaWithInfo:(NSDictionary *)info
     if (responseStatusCode == 200) {
         [xmlData setData:data];
         NSString *xmlCheck = [[NSString alloc] initWithData:xmlData encoding:NSUTF8StringEncoding];
-        //NSLog(@"xmlCheck = %@", xmlCheck);
         
         SBJsonParser* parser = [[SBJsonParser alloc] init];
         NSDictionary *myarr = [parser objectWithString:xmlCheck];

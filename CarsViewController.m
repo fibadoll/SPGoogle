@@ -41,13 +41,11 @@
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-    
     SmartParkAppDelegate *appDelegate = [[UIApplication sharedApplication] delegate];
     objectContext = [appDelegate managedObjectContext];
     
     [self fetchExistingCars];
     [self fetchUser];
-    //NSLog(@"%d", defaultCar.intValue);
     
     [self updateIndex];
     
@@ -75,7 +73,7 @@
 
 }
 
--(void) updateCarStatus{
+-(void)updateCarStatus{
     
     NSString* urlStr = [NSString stringWithFormat:@"https://rocky-scrubland-8564.herokuapp.com/query_cars?user_id=%d", user_id.intValue];
     NSLog(@"%@", urlStr);
@@ -112,14 +110,12 @@
         [statuss addObject:[dict valueForKey:@"status"]];
     }
     
-    
     NSDictionary* carStatus = [NSDictionary dictionaryWithObjects:statuss forKeys:ids];
     //NSLog(@"%@", carStatus);
     for (CarData* car in cars) {
         car.status =[carStatus valueForKey: [NSString stringWithFormat:@"%d", [car.car_id intValue]]];
 
     }
-    
     
     [objectContext save:nil];
     
@@ -165,7 +161,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-
     // Return the number of sections.
     return 1;
 }
@@ -289,22 +284,6 @@
     return [[myarr objectAtIndex:0] integerValue];
     
 }
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 #pragma mark - Table view delegate
 
